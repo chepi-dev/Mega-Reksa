@@ -1,0 +1,52 @@
+/* Tambahkan ke file CSS Anda */
+.calculation-input {
+    transition: all 0.3s ease;
+}
+
+.price-result {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.price-result h5 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.price-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.price-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+/* Di file price-calculator.css */
+.service-option {
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.service-option[value="darat"] {
+    background-color: #e6f7ff;
+    color: #1890ff;
+}
+
+.service-option[value="udara"] {
+    background-color: #f6ffed;
+    color: #52c41a;
+}
+
+.service-option[value="laut"] {
+    background-color: #fff7e6;
+    color: #fa8c16;
+}
