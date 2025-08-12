@@ -25,10 +25,14 @@
                     <button type="submit" class="btn btn-primary">Kirim Ulang Link Verifikasi</button>
                 </form>
 
-                <form method="POST" action="{{ route('logout') }}" class="mt-2">
+                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
-                    <button type="submit" class="btn btn-secondary">Logout</button>
                 </form>
+
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a> --}}
+
             </div>
         </div>
     </div>

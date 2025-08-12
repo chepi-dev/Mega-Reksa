@@ -97,6 +97,13 @@
             <a href="{{ route('Transaksi.index') }}"><i class="fas fa-exchange-alt"></i> Data Transaksi</a>
             <a href="{{ route('Invoice.index') }}"><i class="fas fa-file-invoice"></i> Cetak Invoice</a>
             <a href="{{ route('Summaries.index') }}"><i class="fas fa-clipboard-list"></i> Data Rekapan</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </a>
         </div>
     </div>
 
@@ -106,6 +113,8 @@
         <hr>
         @yield('content')
     </div>
+
+
 
     <script>
         const toggleBtn = document.getElementById('toggle-btn');

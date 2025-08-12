@@ -126,47 +126,77 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $transaksi = Transaksi::findOrFail($id);
+
         $request->validate([
+            'customer_id' => 'required|exists:customers,id',
             'Tanggal' => 'required|date',
             'Nama_Customer' => 'required|string',
             'AWB' => 'required|string',
             'Nama_Barang' => 'required|string',
             'Tujuan' => 'required|string',
-            'Koli' => 'required|integer',
-            'Berat' => 'required|numeric',
-            'Tarif_Pertama' => 'required|numeric',
-            'Tarif_Selanjutnya' => 'required|numeric',
+            'Koli' => 'required|numeric',
+            'jenis_transaksi' => 'required|in:normal,tanpa_tarif_pertama,manual',
         ]);
 
-        $transaksi = Transaksi::findOrFail($id);
+        $Berat = null;
+        $Tarif_Pertama = null;
+        $Tarif_Selanjutnya = null;
+        $Total_Tarif = 0;
 
-        // Hitung total tarif sesuai logika
-        $berat = $request->Berat;
-        $tarifPertama = $request->Tarif_Pertama;
-        $tarifSelanjutnya = $request->Tarif_Selanjutnya;
+        switch ($request->jenis_transaksi) {
+            case 'normal':
+                $request->validate([
+                    'Berat' => 'required|numeric',
+                    'Tarif_Pertama' => 'required|numeric',
+                    'Tarif_Selanjutnya' => 'required|numeric',
+                ]);
+                $Berat = $request->Berat;
+                $Tarif_Pertama = $request->Tarif_Pertama;
+                $Tarif_Selanjutnya = $request->Tarif_Selanjutnya;
 
-        if ($berat <= 5) {
-            $totalTarif = $tarifPertama;
-        } else {
-            $beratSelanjutnya = $berat - 5;
-            $totalTarif = $tarifPertama + ($beratSelanjutnya * $tarifSelanjutnya);
+                $batas = 5;
+                if ($Berat <= $batas) {
+                    $Total_Tarif = $Tarif_Pertama;
+                } else {
+                    $Total_Tarif = $Tarif_Pertama + (($Berat - $batas) * $Tarif_Selanjutnya);
+                }
+                break;
+
+            case 'tanpa_tarif_pertama':
+                $request->validate([
+                    'Berat' => 'required|numeric',
+                    'Tarif_Selanjutnya' => 'required|numeric',
+                ]);
+                $Berat = $request->Berat;
+                $Tarif_Selanjutnya = $request->Tarif_Selanjutnya;
+                $Total_Tarif = $Berat * $Tarif_Selanjutnya;
+                break;
+
+            case 'manual':
+                $request->validate([
+                    'Total_Tarif' => 'required|numeric',
+                ]);
+                $Total_Tarif = $request->Total_Tarif;
+                break;
         }
 
-        // Update data transaksi
         $transaksi->update([
+            'customer_id' => $request->customer_id,
             'Tanggal' => $request->Tanggal,
             'Nama_Customer' => $request->Nama_Customer,
             'AWB' => $request->AWB,
             'Nama_Barang' => $request->Nama_Barang,
             'Tujuan' => $request->Tujuan,
             'Koli' => $request->Koli,
-            'Berat' => $berat,
-            'Tarif_Pertama' => $tarifPertama,
-            'Tarif_Selanjutnya' => $tarifSelanjutnya,
-            'Total_Tarif' => $totalTarif,
+            'Berat' => $Berat ?? 0,
+            'Tarif_Pertama' => $Tarif_Pertama ?? 0,
+            'Tarif_Selanjutnya' => $Tarif_Selanjutnya ?? 0,
+            'Total_Tarif' => $Total_Tarif,
+            'jenis_transaksi' => $request->jenis_transaksi,
         ]);
 
-        return redirect()->route('Transaksi.index')->with('success', 'Data transaksi berhasil diupdate.');
+        return redirect()->route('Transaksi.index')->with('success', 'Transaksi berhasil diperbarui.');
     }
 
 
