@@ -48,6 +48,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#kontak">Kontak</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+
                     <li class="nav-item ms-lg-3">
                         <a href="https://wa.me/62811233594?text=Halo%20Mega%20Reksa%2C%20saya%20tertarik%20menggunakan%20layanan%20pengiriman%20Anda.%20Mohon%20informasi%20lebih%20lanjut."
                             target="_blank" class="btn btn-success btn-sm mt-2 mt-lg-0">
