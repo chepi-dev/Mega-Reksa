@@ -26,34 +26,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-// Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [LoginController::class, 'login']);
-// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
 
-//     // Halaman notifikasi verifikasi email (jika belum verified)
-//     Route::get('/email/verify', function () {
-//         return view('auth.verify-email');
-//     })->name('verification.notice');
+    // Halaman notifikasi verifikasi email (jika belum verified)
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
 
-//     // Link verifikasi yang dikirim via email
-//     Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)
-//         ->middleware(['auth', 'signed'])
-//         ->name('verification.verify');
+    // Link verifikasi yang dikirim via email
+    Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)
+        ->middleware(['auth', 'signed'])
+        ->name('verification.verify');
 
-//     // Kirim ulang email verifikasi
-//     // Resend link verifikasi
-//     Route::post('/email/verification-notification', function (Request $request) {
-//         $request->user()->sendEmailVerificationNotification();
-//         return back()->with('status', 'verification-link-sent');
-//     })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-// });
+    // Kirim ulang email verifikasi
+    // Resend link verifikasi
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('status', 'verification-link-sent');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+});
 
-// Route::middleware(['auth', 'verified'])->group(function () {});
+Route::middleware(['auth', 'verified'])->group(function () {});
 
 
 route::get('/dashboard', function () {
