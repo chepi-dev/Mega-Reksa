@@ -29,10 +29,9 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        event(new Registered($user));
-
         auth()->login($user);
 
-        return redirect()->route('verification.notice');
+        return redirect('/transaksi'); // atau halaman utama aplikasi
+
     }
 }
