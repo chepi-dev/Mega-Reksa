@@ -159,7 +159,7 @@
             <tr>
                 <td style="vertical-align: top; width: 50%;">
                     <strong>Kepada:</strong><br>
-                    <strong>{{ $customer->Nama }}</strong><br>
+                    <strong>{{ $customer->Nama }}</strong><br><br>
                     {{ $customer->Alamat ?? 'Alamat tidak tersedia' }}
                 </td>
                 <td style="width: 25%;"></td>
