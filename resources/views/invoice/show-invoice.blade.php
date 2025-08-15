@@ -165,9 +165,10 @@
                 <td style="width: 25%;"></td>
                 <td style="vertical-align: top; width: 25%;">
                     <strong>Tanggal:</strong><br>
-                    {{ $invoice->Tanggal ?? 'Tanggal tidak tersedia' }}<br><br>
-                    <strong>No Invoice:</strong><br>
-                    {{ $invoice->No_Invoice ?? 'Nomor tidak tersedia' }}
+                    {{ now()->format('d-m-Y') }}<br><br>
+                    <strong>No Invoice:</strong><br><i>
+                        I-{{ $customer->id }}/MR/BDG/VI/2025
+                    </i>
                 </td>
             </tr>
         </table>
@@ -189,15 +190,15 @@
 
         <!-- Terbilang -->
         <div class="total-section">
-            <p><em>{{ $terbilang }} rupiah</em></p>
+            <p><em>{{ $terbilang }}</em></p>
         </div>
 
         <table style="width: 100%; margin-top: 30px;">
             <tr>
                 <td style="vertical-align: top; width: 33%;">
                     <p><strong>PEMBAYARAN</strong></p>
-                    <p>NAMA: MEGA REKSA</p>
-                    <p>No Rek: +123</p>
+                    <p>NAMA: ROCHMAN YUDHOSWASONOSWASONO</p>
+                    <p>No Rek: 4531213305</p>
                 </td>
                 <td style="width: 33%;"></td>
                 <td style="vertical-align: top; text-align: right; width: 33%;">
