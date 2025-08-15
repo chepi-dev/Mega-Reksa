@@ -2,14 +2,12 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MonthlySummariesController;
 use App\Http\Controllers\TransaksiController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
