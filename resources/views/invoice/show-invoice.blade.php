@@ -198,9 +198,9 @@
                 <td style="vertical-align: top; width: 33%;">
                     <p><strong>PEMBAYARAN</strong></p>
                     <p>NAMA: ROCHMAN YUDHOSWASONOSWASONO</p>
-                    <p>No Rek: 4531213305</p>
+                    <p>BANK Central AsiaNo Rek: 4531213305</p>
                 </td>
-                <td style="width: 33%;"></td>
+                <td style="width: 20%;"></td>
                 <td style="vertical-align: top; text-align: right; width: 33%;">
                     <p>Bandung, {{ \Carbon\Carbon::now()->format('d F Y') }}</p>
                     <br><br>
